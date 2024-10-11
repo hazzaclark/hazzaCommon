@@ -17,3 +17,5 @@ make
 
 the output of this should be a lib file called ``hazzaCommon.so``
 
+from there, feel free to drag and drop it in ``/usr/local/include`` to use asynchronously across programs
+
