@@ -57,4 +57,6 @@ typedef volatile double VF64;
 #define ASM_UNUSED
 #endif
 
+#define     PACKED_ALIGNED      __attribute__((packed, aligned(4)))
+
 #endif
