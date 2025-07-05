@@ -59,4 +59,18 @@ typedef volatile double VF64;
 
 #define     PACKED_ALIGNED      __attribute__((packed, aligned(4)))
 
+#define KB_TO_BYTES      1024
+#define MB_TO_BYTES      (1024 * 1024)
+#define GB_TO_BYTES      (1024 * 1024 * 1024)
+
+#define FORMAT_SIZE(SIZE) \
+    ((SIZE) >= GB_TO_BYTES ? (SIZE)/GB_TO_BYTES : \
+     (SIZE) >= MB_TO_BYTES ? (SIZE)/MB_TO_BYTES : \
+     (SIZE) >= KB_TO_BYTES ? (SIZE)/KB_TO_BYTES : (SIZE))
+
+#define FORMAT_UNIT(SIZE) \
+    ((SIZE) >= GB_TO_BYTES ? "GB" : \
+     (SIZE) >= MB_TO_BYTES ? "MB" : \
+     (SIZE) >= KB_TO_BYTES ? "KB" : "B")
+
 #endif
