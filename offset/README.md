@@ -11,16 +11,18 @@ The reason for why this is so important is that, much to the inadbertance of the
 Moreover, the usage of concatenating the field name to a char using ``#`` helps with being able to dynamically access and determine the field member being accessed 
 
 ```c
+// ACCESS THE PROVIDED ENUM VALUES THAT CORRESPOND WITH EACH OF THE TRACE TYPES
 #define PRINT_OFFSET(TYPE, FIELD) \
     do { \
         size_t FIELD_SIZE = sizeof(((TYPE *)0)->FIELD); \
-        SIZE += FIELD_SIZE; \
-        printf("OFFSET OF %s: %zu\n", #FIELD, offsetof(TYPE, FIELD)); \
-        printf("SIZE AFTER %s: %zu (+%zu)\n\n", #FIELD, SIZE, FIELD_SIZE); \
+        size_t FIELD_OFFSET = offsetof(TYPE, FIELD); \
+        MEM_TRACE(MEM_OFFSET, MEM_ERR_OFFSET, FIELD_SIZE, FIELD_OFFSET, \
+                "%s", #FIELD); \
+        SIZE = FIELD_OFFSET + FIELD_SIZE; \
     } while(0)
 
 #define PRINT_SIZE(TYPE) \
-    printf("FINAL SIZE OF %s: %zu\n", #TYPE, sizeof(TYPE))
+    MEM_TRACE(MEM_FIN, MEM_ERR_FIN, sizeof(TYPE), NULL, #TYPE)
 ```
 
 ## How to use this:
