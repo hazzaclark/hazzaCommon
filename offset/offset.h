@@ -29,14 +29,19 @@ typedef struct MY_STRUCT
     
 } MY_STRUCT;                        // 0x0C
 
+// UNIONS ALL SHARE THE SAME OFFSET
+// SO THE SIZE OF THE UNION IS DEPENDANT ON THE LARGEST MEMBER
+
 typedef union MY_UNION
 {
     uint16_t VAR_1;
     uint16_t VAR_2;
     signed VAR_3;
     signed VAR_4;
+    double VAR_5;
+    double VAR_6;
     
-} MY_UNION;
+} MY_UNION;             // 0x08
 
 typedef enum MEM_OP
 {
