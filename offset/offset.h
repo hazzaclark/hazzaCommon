@@ -29,6 +29,15 @@ typedef struct MY_STRUCT
     
 } MY_STRUCT;                        // 0x0C
 
+typedef union MY_UNION
+{
+    uint16_t VAR_1;
+    uint16_t VAR_2;
+    signed VAR_3;
+    signed VAR_4;
+    
+} MY_UNION;
+
 typedef enum MEM_OP
 {
     MEM_ACCESS = 'A',
