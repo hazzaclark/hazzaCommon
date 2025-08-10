@@ -20,7 +20,7 @@ const char* MEM_MSG[] =
     "MEM ACCESS",
     "PADDING DETECTED",
     "OFFSET TRACKING",
-    "FINAL SIZE OF STRUCT"
+    "FINAL SIZE"
 };
 
 int main(void) 
