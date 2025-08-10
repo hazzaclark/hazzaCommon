@@ -10,37 +10,18 @@
 // THEREFORE, I WANTED TO MAKE SOMETHING THAT SERVES TO PROVIDE THAT UNDERSTANDING
 // AND TO VALLIDATE THE FUNCTIONALITY ENCOMPASSING SUCH
 
-#include <stdio.h>
-#include <stddef.h>
-#include <stdint.h>
+// NESTED INCLUDES
 
-// GLOBAL FOR CONTINGUOUS SIZE
-static size_t SIZE = 0;
+#include "offset.h"
 
-#define PACKED __attribute__((packed))
-
-// GET THE FIELD SIZE AND INCREMENT IT BASED ON THE PREVIOUS SIZE
-// THIS PRESUPPOSES AN ARBITARY INSTANCE OF THE STRUCT BEING USED
-
-#define PRINT_OFFSET(TYPE, FIELD) \
-    do { \
-        size_t FIELD_SIZE = sizeof(((TYPE *)0)->FIELD); \
-        SIZE += FIELD_SIZE; \
-        printf("OFFSET OF %s: %zu\n", #FIELD, offsetof(TYPE, FIELD)); \
-        printf("SIZE AFTER %s: %zu (+%zu)\n\n", #FIELD, SIZE, FIELD_SIZE); \
-    } while(0)
-
-#define PRINT_SIZE(TYPE) \
-    printf("FINAL SIZE OF %s: %zu\n", #TYPE, sizeof(TYPE))
-
-typedef struct MY_STRUCT 
+size_t SIZE = 0;
+const char* MEM_MSG[] = 
 {
-    uint16_t VAR_1;                 // 0x00
-    uint16_t VAR_2;                 // 0x02
-    signed VAR_3;                   // 0x04
-    signed VAR_4;                   // 0x08
-    
-} PACKED MY_STRUCT;                 // 0x0C
+    "MEM ACCESS",
+    "PADDING DETECTED",
+    "OFFSET TRACKING",
+    "FINAL SIZE OF STRUCT"
+};
 
 int main(void) 
 {
@@ -48,7 +29,7 @@ int main(void)
     PRINT_OFFSET(MY_STRUCT, VAR_2);
     PRINT_OFFSET(MY_STRUCT, VAR_3);
     PRINT_OFFSET(MY_STRUCT, VAR_4);
-    
     PRINT_SIZE(MY_STRUCT);
+    
     return 0;
 }
