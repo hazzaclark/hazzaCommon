@@ -49,7 +49,7 @@ typedef enum MEM_ERROR
 
 #define MEM_TRACE(OP, ERR, SZ, OFF, ...) \
     do { \
-        printf("[TRACE] %c -> %-18s [OFFSET:%-zu] | [SIZE:%-zu] ", \
+        printf("[TRACE] %c -> %-18s [OFFSET: 0x%02X] | [SIZE: %zu] ", \
               (char)(OP), MEM_MSG[ERR], OFF, (size_t)(SZ)); \
         printf(__VA_ARGS__); \
         printf("\n"); \
@@ -68,7 +68,7 @@ typedef enum MEM_ERROR
     } while(0)
 
 #define PRINT_SIZE(TYPE) \
-    MEM_TRACE(MEM_FIN, MEM_ERR_FIN, sizeof(TYPE), NULL, #TYPE)
+    MEM_TRACE(MEM_FIN, MEM_ERR_FIN, sizeof(TYPE), sizeof(TYPE), #TYPE)
     
 extern size_t SIZE;
 extern const char* MME_MSG[];
