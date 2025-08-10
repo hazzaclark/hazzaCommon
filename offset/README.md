@@ -27,4 +27,6 @@ Moreover, the usage of concatenating the field name to a char using ``#`` helps 
 
 ## How to use this:
 
-Idfk, just make a header file out of this and just add it to your project? ``¯\_(ツ)_/¯``
+Idfk, just use the header file from this and just add it to your project? ``¯\_(ツ)_/¯``
+
+suppose you can compile using ``gcc --std=c99 main.c -o offset`` 
