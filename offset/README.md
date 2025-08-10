@@ -10,6 +10,19 @@ The reason for why this is so important is that, much to the inadbertance of the
 
 Moreover, the usage of concatenating the field name to a char using ``#`` helps with being able to dynamically access and determine the field member being accessed 
 
+```c
+#define PRINT_OFFSET(TYPE, FIELD) \
+    do { \
+        size_t FIELD_SIZE = sizeof(((TYPE *)0)->FIELD); \
+        SIZE += FIELD_SIZE; \
+        printf("OFFSET OF %s: %zu\n", #FIELD, offsetof(TYPE, FIELD)); \
+        printf("SIZE AFTER %s: %zu (+%zu)\n\n", #FIELD, SIZE, FIELD_SIZE); \
+    } while(0)
+
+#define PRINT_SIZE(TYPE) \
+    printf("FINAL SIZE OF %s: %zu\n", #TYPE, sizeof(TYPE))
+```
+
 ## How to use this:
 
 Idfk, just make a header file out of this and just add it to your project? ``¯\_(ツ)_/¯``
